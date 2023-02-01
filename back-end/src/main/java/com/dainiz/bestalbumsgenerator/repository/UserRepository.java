@@ -7,5 +7,6 @@ import com.dainiz.bestalbumsgenerator.model.User;
 
 
 public interface UserRepository extends JpaRepository<User, Integer> {
-//    List<User> findByName(String name);
+    long deleteByName(String name);
+    //    List<User> findByName(String name);
 }

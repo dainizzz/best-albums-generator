@@ -24,6 +24,6 @@ public class UserController {
         userRepository.save(user);
     }
 
-    @DeleteMapping("{userId}")
-    public void deleteUser(@PathVariable("userId") Integer id) { userRepository.deleteById(id);}
+    @DeleteMapping("{username}")
+    public void deleteUser(@PathVariable("username") String name) { userRepository.deleteByName(name);}
 }

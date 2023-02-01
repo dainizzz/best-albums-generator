@@ -8,7 +8,7 @@ public class Album {
     @Id
     private String mbid;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "username")
     private User user;
     private Integer playCount;
     private String imgLink;
@@ -76,4 +76,6 @@ public class Album {
     public void setUserRank(String userRank) {
         this.userRank = userRank;
     }
+
+    // Create method in album
 }
