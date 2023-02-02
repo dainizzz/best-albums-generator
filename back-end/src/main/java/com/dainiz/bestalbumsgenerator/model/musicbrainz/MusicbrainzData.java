@@ -11,6 +11,8 @@ public class MusicbrainzData {
         this.date = date;
     }
 
+    private MusicbrainzData() {}
+
     public String getDate() {
         return date;
     }
@@ -18,4 +20,6 @@ public class MusicbrainzData {
     public void setDate(String date) {
         this.date = date;
     }
+
+
 }

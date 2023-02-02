@@ -14,6 +14,8 @@ public class Topalbums {
         this.lfAlbum = lfAlbum;
     }
 
+    private Topalbums() {}
+
     public List<LfAlbum> getLfAlbum() {
         return lfAlbum;
     }
@@ -21,4 +23,6 @@ public class Topalbums {
     public void setLfAlbum(List<LfAlbum> lfAlbum) {
         this.lfAlbum = lfAlbum;
     }
+
+
 }
