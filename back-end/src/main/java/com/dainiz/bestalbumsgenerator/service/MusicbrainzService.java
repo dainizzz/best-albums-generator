@@ -1,15 +1,23 @@
 package com.dainiz.bestalbumsgenerator.service;
 
+import com.dainiz.bestalbumsgenerator.model.musicbrainz.MusicbrainzData;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 @Service
 public class MusicbrainzService {
-    // TODO: Create POJO for Musicbrainz data & process it
-    public Object getMusicBrainzDataRaw(String mbid) {
+    @Autowired
+    // TODO: Add headers for UserAgent
+    private RestTemplate musicbrainzRestTemplate = new RestTemplate();
+
+    public MusicbrainzData getPojoMusicbrainzData(String mbid) {
         String url = "https://musicbrainz.org/ws/2/release/" + mbid + "?fmt=json";
-        RestTemplate restTemplate = new RestTemplate();
-        return restTemplate.getForObject(url, Object.class);
+        return musicbrainzRestTemplate.getForObject(url, MusicbrainzData.class);
     }
 
+    public Object getRawMusicbrainzData(String mbid) {
+        String url = "https://musicbrainz.org/ws/2/release/" + mbid + "?fmt=json";
+        return musicbrainzRestTemplate.getForObject(url, Object.class);
+    }
 }

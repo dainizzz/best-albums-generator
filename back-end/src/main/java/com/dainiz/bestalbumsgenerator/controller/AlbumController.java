@@ -2,8 +2,10 @@ package com.dainiz.bestalbumsgenerator.controller;
 
 import com.dainiz.bestalbumsgenerator.model.Album;
 import com.dainiz.bestalbumsgenerator.model.lastfm.LastFmData;
+import com.dainiz.bestalbumsgenerator.model.musicbrainz.MusicbrainzData;
 import com.dainiz.bestalbumsgenerator.repository.AlbumRepository;
 import com.dainiz.bestalbumsgenerator.service.LastFmService;
+import com.dainiz.bestalbumsgenerator.service.MusicbrainzService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
@@ -43,11 +45,21 @@ public class AlbumController {
         return lastFmService.getPojoLastFmData(username);
     }
 
-    // Musicbrainz API Call TODO: A lot, but more or less do same as LastFm
-    @GetMapping("{albumId}/{musicbrainz}")
-    public Object getMusicBrainzData(@PathVariable("albumId") String mbid) {
-        String url = "https://musicbrainz.org/ws/2/release/" + mbid + "?fmt=json";
-        RestTemplate restTemplate = new RestTemplate();
-        return restTemplate.getForObject(url, Object.class);
+    @GetMapping("last-fm-raw")
+    public Object getLastFmRawData(@PathVariable("username") String username) {
+        return lastFmService.getRawLastFmData(username);
+    }
+
+    @Autowired
+    private MusicbrainzService musicbrainzService;
+
+    @GetMapping("{albumId}/musicbrainz-pojo")
+    public MusicbrainzData getMusicbrainzPojoData(@PathVariable("albumId") String mbid) {
+        return musicbrainzService.getPojoMusicbrainzData(mbid);
+    }
+
+    @GetMapping("{albumId}/musicbrainz-raw")
+    public Object getMusicBrainzRawData(@PathVariable("albumId") String mbid) {
+        return musicbrainzService.getRawMusicbrainzData(mbid);
     }
 }
