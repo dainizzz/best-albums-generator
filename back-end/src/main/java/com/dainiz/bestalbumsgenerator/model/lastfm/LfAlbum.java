@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 // One of the key values ("album") for LastFmData; this is a list of albums
-public class Album {
+public class LfAlbum {
 
     public Artist artist;
     public List<Image> image;
