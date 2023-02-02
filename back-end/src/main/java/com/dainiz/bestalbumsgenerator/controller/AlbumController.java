@@ -4,7 +4,6 @@ import com.dainiz.bestalbumsgenerator.model.Album;
 import com.dainiz.bestalbumsgenerator.model.lastfm.LastFmData;
 import com.dainiz.bestalbumsgenerator.repository.AlbumRepository;
 import com.dainiz.bestalbumsgenerator.service.LastFmService;
-import io.github.cdimascio.dotenv.Dotenv;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
@@ -19,7 +18,7 @@ public class AlbumController {
     @GetMapping
     public List<Album> getAlbums() { return albumRepository.findAll();}
 
-    record NewAlbumRequest(String mbid, Integer playCount, String imgLink, String artist, String releaseDate, String userRank){}
+    record NewAlbumRequest(String mbid, Integer playCount, String imgLink, String artist, String releaseDate, Integer userRank){}
 
     @PostMapping
     public void addAlbum(@RequestBody NewAlbumRequest request) {

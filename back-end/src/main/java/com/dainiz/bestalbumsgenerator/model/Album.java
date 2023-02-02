@@ -14,9 +14,9 @@ public class Album {
     private String imgLink;
     private String artist;
     private String releaseDate;
-    private String userRank;
+    private Integer userRank;
 
-    public Album(String mbid, Integer playCount, String imgLink, String artist, String releaseDate, String userRank) {
+    public Album(String mbid, Integer playCount, String imgLink, String artist, String releaseDate, Integer userRank) {
         this.mbid = mbid;
         this.playCount = playCount;
         this.imgLink = imgLink;
@@ -69,13 +69,11 @@ public class Album {
         this.releaseDate = releaseDate;
     }
 
-    public String getUserRank() {
+    public Integer getUserRank() {
         return userRank;
     }
 
-    public void setUserRank(String userRank) {
+    public void setUserRank(Integer userRank) {
         this.userRank = userRank;
     }
-
-    // Create method in album
 }
