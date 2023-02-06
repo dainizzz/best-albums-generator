@@ -6,9 +6,9 @@ import com.dainiz.bestalbumsgenerator.model.musicbrainz.MusicbrainzData;
 import com.dainiz.bestalbumsgenerator.repository.AlbumRepository;
 import com.dainiz.bestalbumsgenerator.service.LastFmService;
 import com.dainiz.bestalbumsgenerator.service.MusicbrainzService;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.RestTemplate;
 import java.util.List;
 
 
@@ -54,7 +54,8 @@ public class AlbumController {
     private MusicbrainzService musicbrainzService;
 
     @GetMapping("{albumId}/musicbrainz-pojo")
-    public MusicbrainzData getMusicbrainzPojoData(@PathVariable("albumId") String mbid) {
+    public MusicbrainzData getMusicbrainzPojoData(HttpServletResponse response, @PathVariable("albumId") String mbid) {
+        response.addHeader("Best Albums Generator/0.1", "dainiz.almazan@gmail.com");
         return musicbrainzService.getPojoMusicbrainzData(mbid);
     }
 
@@ -62,4 +63,8 @@ public class AlbumController {
     public Object getMusicBrainzRawData(@PathVariable("albumId") String mbid) {
         return musicbrainzService.getRawMusicbrainzData(mbid);
     }
+
+    // TODO: Implement this; this is where you'll make the call to filter the data
+//    @GetMapping("2022")
+//    public List
 }

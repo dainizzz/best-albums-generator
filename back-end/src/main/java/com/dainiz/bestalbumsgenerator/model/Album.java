@@ -12,14 +12,16 @@ public class Album {
     private User user;
     private Integer playCount;
     private String imgLink;
+    private String title;
     private String artist;
     private String releaseDate;
     private Integer userRank;
 
-    public Album(String mbid, Integer playCount, String imgLink, String artist, String releaseDate, Integer userRank) {
+    public Album(String mbid, Integer playCount, String imgLink, String title, String artist, String releaseDate, Integer userRank) {
         this.mbid = mbid;
         this.playCount = playCount;
         this.imgLink = imgLink;
+        this.title = title;
         this.artist = artist;
         this.releaseDate = releaseDate;
         this.userRank = userRank;
@@ -51,6 +53,14 @@ public class Album {
 
     public void setImgLink(String imgLink) {
         this.imgLink = imgLink;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getArtist() {
