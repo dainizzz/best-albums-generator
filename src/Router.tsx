@@ -1,5 +1,5 @@
 import Login from './login/Login';
-import Tournament from './tournament/Tournament';
+import Game from './game/Game';
 import Results from './results/Results';
 
 export const routes = [
@@ -8,7 +8,7 @@ export const routes = [
         path: "/"
     },
     {
-        element: <Tournament />,
+        element: <Game />,
         path: "/play"
     },
     {
