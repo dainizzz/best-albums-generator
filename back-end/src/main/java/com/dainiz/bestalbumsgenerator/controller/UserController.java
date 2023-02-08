@@ -2,6 +2,8 @@ package com.dainiz.bestalbumsgenerator.controller;
 
 import com.dainiz.bestalbumsgenerator.model.User;
 import com.dainiz.bestalbumsgenerator.repository.UserRepository;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,6 +17,12 @@ public class UserController {
     @GetMapping
     public List<User> getUsers() { return userRepository.findAll();}
 
+    @GetMapping({"{username}"})
+    public ResponseEntity<User> getUserByUsername(@PathVariable("username") String username) {
+        User user = userRepository.findByName(username);
+        return new ResponseEntity<>(user, HttpStatus.FOUND);
+    }
+
     record NewUserRequest(String name){}
 
     @PostMapping
@@ -24,6 +32,6 @@ public class UserController {
         userRepository.save(user);
     }
 
-    @DeleteMapping("{username}")
-    public void deleteUser(@PathVariable("username") String name) { userRepository.deleteByName(name);}
+    @DeleteMapping("{userId}")
+    public void deleteUser(@PathVariable("userId") int id) { userRepository.deleteById(id);}
 }
