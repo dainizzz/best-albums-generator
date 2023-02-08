@@ -1,9 +1,8 @@
 package com.dainiz.bestalbumsgenerator.repository;
 
-import com.dainiz.bestalbumsgenerator.model.Album;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import com.dainiz.bestalbumsgenerator.model.Album;
 
-
-public interface AlbumRepository extends JpaRepository<Album, String> {
+public interface AlbumRepository extends JpaRepository<Album, Integer> {
 }

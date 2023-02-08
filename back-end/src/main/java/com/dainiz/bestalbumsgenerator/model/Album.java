@@ -15,7 +15,7 @@ public class Album {
             generator = "album_id_sequence"
     )
     @Id
-    private int id;
+    private Integer id;
 
     private String mbid;
     @ManyToOne(fetch = FetchType.LAZY)
