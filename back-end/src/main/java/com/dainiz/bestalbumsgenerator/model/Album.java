@@ -5,7 +5,18 @@ import jakarta.persistence.*;
 @Entity
 //@Table(name = "albums")
 public class Album {
+    @SequenceGenerator(
+            name = "album_id_sequence",
+            sequenceName = "album_id_sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "album_id_sequence"
+    )
     @Id
+    private int id;
+
     private String mbid;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "username")
@@ -29,6 +40,22 @@ public class Album {
 
     public Album() {
 
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public String getMbid() {
@@ -85,5 +112,9 @@ public class Album {
 
     public void setUserRank(Integer userRank) {
         this.userRank = userRank;
+    }
+
+    public void rateAlbum() {
+        this.userRank++;
     }
 }
