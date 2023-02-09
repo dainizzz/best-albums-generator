@@ -14,15 +14,15 @@ public class Game {
             generator = "game_id_sequence"
     )
     @Id
-    private int id;
+    private Integer id;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "username")
     private User user;
-    private int album1;
-    private int album2;
-    private int winner;
+    private Integer album1;
+    private Integer album2;
+    private Integer winner;
 
-    public Game(int album1, int album2, int winner) {
+    public Game(Integer album1, Integer album2, Integer winner) {
         this.album1 = album1;
         this.album2 = album2;
         this.winner = winner;
