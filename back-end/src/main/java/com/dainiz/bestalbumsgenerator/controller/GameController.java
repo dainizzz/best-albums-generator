@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/v1/users/{username}/game")
+@RequestMapping("api/v1/users/{username}/games")
 public class GameController {
 
     private final GameRepository gameRepository;

@@ -1,10 +1,14 @@
 package com.dainiz.bestalbumsgenerator.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 @Entity
 //@Table(name = "albums")
 public class Album {
+    @Id
     @SequenceGenerator(
             name = "album_id_sequence",
             sequenceName = "album_id_sequence",
@@ -14,12 +18,13 @@ public class Album {
             strategy = GenerationType.SEQUENCE,
             generator = "album_id_sequence"
     )
-    @Id
     private Integer id;
 
     private String mbid;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "username")
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JsonIgnore
     private User user;
     private Integer playCount;
     private String imgLink;

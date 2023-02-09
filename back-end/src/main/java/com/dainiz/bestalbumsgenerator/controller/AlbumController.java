@@ -1,14 +1,17 @@
 package com.dainiz.bestalbumsgenerator.controller;
 
 import com.dainiz.bestalbumsgenerator.model.Album;
+import com.dainiz.bestalbumsgenerator.model.User;
 import com.dainiz.bestalbumsgenerator.model.lastfm.LastFmData;
 import com.dainiz.bestalbumsgenerator.model.musicbrainz.MusicbrainzData;
 import com.dainiz.bestalbumsgenerator.repository.AlbumRepository;
+import com.dainiz.bestalbumsgenerator.repository.UserRepository;
 import com.dainiz.bestalbumsgenerator.service.LastFmService;
 import com.dainiz.bestalbumsgenerator.service.MusicbrainzService;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,11 +22,21 @@ import java.util.List;
 @RestController
 @RequestMapping("api/v1/users/{username}/albums")
 public class AlbumController {
+
+    @Autowired
+    private UserRepository userRepository;
+
     private final AlbumRepository albumRepository;
     public AlbumController(AlbumRepository albumRepository) {this.albumRepository = albumRepository;}
     @GetMapping
-    // TODO: Edit this to find all by username
-    public List<Album> getAlbums() { return albumRepository.findAll();}
+    public ResponseEntity<List<Album>> getAllAlbumsByUsername(@PathVariable(value = "username") Integer username) {
+        if (!userRepository.existsById(username)) {
+            throw new EntityNotFoundException();
+        }
+
+        List<Album> albums = albumRepository.findByUserId(username);
+        return new ResponseEntity<>(albums, HttpStatus.OK);
+    }
 
     @GetMapping("{albumId}")
     public ResponseEntity<Album> getAlbumById(@PathVariable("albumId") Integer albumId) {
@@ -35,7 +48,9 @@ public class AlbumController {
     record NewAlbumRequest(String mbid, Integer playCount, String imgLink, String artist, String releaseDate, Integer userRank){}
 
     @PostMapping
-    public void addAlbum(@RequestBody NewAlbumRequest request) {
+    public ResponseEntity<Album> addAlbum(@PathVariable("username") Integer username,
+                                          @RequestBody NewAlbumRequest request) {
+        User user = userRepository.findById(username).orElseThrow(EntityNotFoundException::new);
         Album album = new Album();
         album.setMbid(request.mbid());
         album.setArtist(request.artist());
@@ -43,9 +58,13 @@ public class AlbumController {
         album.setPlayCount(request.playCount());
         album.setUserRank(request.userRank());
         album.setReleaseDate(request.releaseDate());
+        album.setUser(user);
         albumRepository.save(album);
+
+        return new ResponseEntity<>(album, HttpStatus.CREATED);
     }
-    @PatchMapping({"albumId"})
+
+    @PatchMapping({"{albumId}"})
     public ResponseEntity<Album> updateAlbum(@PathVariable("albumId") Integer albumId) {
         Album album = albumRepository.findById(albumId)
                 .orElseThrow(EntityNotFoundException::new);
@@ -59,7 +78,15 @@ public class AlbumController {
     public void deleteAlbum(@PathVariable("albumId") Integer albumId) { albumRepository.deleteById(albumId);}
 
     @DeleteMapping
-    public void deleteAllAlbums() { albumRepository.deleteAll();}
+    public ResponseEntity<List<Album>> deleteAllUserAlbums(@PathVariable("username") Integer username) {
+        if (!userRepository.existsById(username)) {
+            throw new EntityNotFoundException();
+        }
+
+        albumRepository.deleteByUserId(username);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
 
     @Autowired
     private LastFmService lastFmService;
