@@ -5,6 +5,7 @@ import Login from "./login/Login";
 import Game from "./game/Game";
 
 const App = () => {
+  const [usersList, setUsersList] = useState([]);
   const [currentUser, setCurrentUser] = useState({});
   const [albumsList, setAlbumsList] = useState([]);
   const [currentRound, setCurrentRound] = useState(0);
@@ -28,6 +29,9 @@ const App = () => {
       .post(`${process.env.REACT_APP_BACKEND_URL}/users`, newUser)
       .then((response) => {
         console.log({ response });
+        const newUsersList = [...usersList];
+        newUsersList.push(response.data);
+        setUsersList(newUsersList);
         setCurrentUser(response.data);
         const userId = response.data.id;
         postAlbums(userId);
@@ -43,8 +47,8 @@ const App = () => {
       .then((response) => {
         console.log({ response });
         setAlbumsList(response.data);
-        const userId = currentUser.id;
-        postMatches(userId);
+        const currentUserId = userId;
+        postMatches(currentUserId);
       })
       .catch((error) => {
         console.log(("Error: ", error));
@@ -72,9 +76,11 @@ const App = () => {
       {albumsList.length > 0 ? (
         <Game
           albumsList={albumsList}
+          setAlbumsList={setAlbumsList}
           currentUser={currentUser}
           currentRound={currentRound}
           currentMatches={currentMatches}
+          setCurrentRound={setCurrentRound}
         />
       ) : null}
     </>

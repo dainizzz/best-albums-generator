@@ -16,4 +16,12 @@ img {
     text-align: center;
     background-color: rgb(240, 189, 208);
     color: darkblue;
+    box-shadow: 
+    0px 54px 55px rgba(205, 249, 232, 1),
+    0px -12px 30px rgba(205, 249, 232, 1),
+    0px 4px 6px rgba(205, 249, 232, 1),
+    0px 12px 13px rgba(205, 249, 232, 1), 
+    0px -3px 5px rgba(205, 249, 232, 1)
+    3px 3px 16px 0px inset rgb(225, 248, 240),
+    -3px -3px 16px 1px inset rgb(220, 145, 173);
 }
