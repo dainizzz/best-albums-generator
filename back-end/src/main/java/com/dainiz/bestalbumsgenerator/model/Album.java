@@ -33,7 +33,7 @@ public class Album {
     private String releaseDate;
     private Integer userRank;
 
-    public Album(String mbid, Integer playCount, String imgLink, String title, String artist, String releaseDate, Integer userRank) {
+    public Album(String mbid, Integer playCount, String imgLink, String title, String artist, String releaseDate, Integer userRank, User user) {
         this.mbid = mbid;
         this.playCount = playCount;
         this.imgLink = imgLink;
@@ -41,6 +41,7 @@ public class Album {
         this.artist = artist;
         this.releaseDate = releaseDate;
         this.userRank = userRank;
+        this.user = user;
     }
 
     public Album() {

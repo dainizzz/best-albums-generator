@@ -1,15 +1,19 @@
 package com.dainiz.bestalbumsgenerator.controller;
 
+import com.dainiz.bestalbumsgenerator.model.Album;
 import com.dainiz.bestalbumsgenerator.model.Game;
 import com.dainiz.bestalbumsgenerator.model.User;
+import com.dainiz.bestalbumsgenerator.repository.AlbumRepository;
 import com.dainiz.bestalbumsgenerator.repository.GameRepository;
 import com.dainiz.bestalbumsgenerator.repository.UserRepository;
+import com.dainiz.bestalbumsgenerator.service.GameService;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -18,6 +22,9 @@ public class GameController {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private AlbumRepository albumRepository;
 
     private final GameRepository gameRepository;
     public GameController(GameRepository gameRepository) {this.gameRepository = gameRepository;}
@@ -78,4 +85,20 @@ public class GameController {
         gameRepository.deleteByUserId(username);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+
+    @Autowired
+    private GameService gameService;
+
+    @PostMapping("/round/{roundNumber}")
+    public void saveGameRoundPairs(@PathVariable("roundNumber") Integer roundNumber, @PathVariable("username") Integer username) {
+        // Create a new user
+        User user = userRepository.findById(username).orElseThrow(EntityNotFoundException::new);
+        // Make call to album repository and get all albums by the id
+        List<Album> albums = albumRepository.findByUserId(username);
+        // Add the match pairings to user
+        ArrayList<Game> gameRoundPairs = gameService.generateRoundPairings(albums, user, roundNumber);
+        // Save to Game table
+        gameRepository.saveAll(gameRoundPairs);
+    }
+
 }

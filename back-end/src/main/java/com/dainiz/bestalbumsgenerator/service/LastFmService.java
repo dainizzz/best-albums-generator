@@ -1,6 +1,7 @@
 package com.dainiz.bestalbumsgenerator.service;
 
 import com.dainiz.bestalbumsgenerator.model.Album;
+import com.dainiz.bestalbumsgenerator.model.User;
 import com.dainiz.bestalbumsgenerator.model.lastfm.*;
 import com.dainiz.bestalbumsgenerator.model.musicbrainz.MusicbrainzData;
 import io.github.cdimascio.dotenv.Dotenv;
@@ -36,7 +37,8 @@ public class LastFmService {
     @Autowired
     private MusicbrainzService musicbrainzService = new MusicbrainzService();
 
-    public ArrayList<Album> processUserAlbums(String username) {
+    public ArrayList<Album> processUserAlbums(User user) {
+        String username = user.getName();
         ArrayList<Album> topYearlyAlbums = new ArrayList<>();
         LastFmData lastFmData = getPojoLastFmData(username);
         Topalbums topalbums = lastFmData.getTopalbums();
@@ -64,7 +66,7 @@ public class LastFmService {
                 List<Image> images = lfAlbum.getImage();
                 Image image = images.get(3);
                 Album album = new Album(
-                        mbid, playCountInt, image.getText(), lfAlbum.getName(), artist.name(), releaseDate, 0
+                        mbid, playCountInt, image.getText(), lfAlbum.getName(), artist.name(), releaseDate, 0, user
                 );
                 topYearlyAlbums.add(album);
             }
