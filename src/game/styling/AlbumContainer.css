@@ -5,9 +5,9 @@
     justify-content: center;
     text-align: center;
     /* margin: 0; */
-    width: 40vw;
+    width: 45vw;
     height: 80vh;
-    border-radius: 20%;
+    border-radius: 50%;
     background: radial-gradient(
     circle at 75% 30%,
     white 5px,

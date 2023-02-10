@@ -1,6 +1,13 @@
+import NameForm from "../ui/components/NameForm";
 import Graphic from "./components/Graphic";
+import GraphicStyleDropdown from "./components/GraphicStyleDropdown";
 import TextBox from "./components/TextBox";
 import './styling/results.css'
+
+
+const displayContent = {
+    label: 'Use custom name',
+}
 
 const Results = () => {
     return(
@@ -8,7 +15,8 @@ const Results = () => {
             <Graphic />
             <TextBox />
             <div className="image-modifiers">
-                <p>Custom name form and graphic style dropdown go here</p>
+                <GraphicStyleDropdown />
+                <NameForm label={displayContent.label}/>
             </div>
         </div>
         

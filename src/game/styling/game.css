@@ -11,3 +11,9 @@ img {
     max-width: 200px;
     max-height: 200px;
 }
+
+.instructions {
+    text-align: center;
+    background-color: rgb(240, 189, 208);
+    color: darkblue;
+}

@@ -27,7 +27,7 @@ const NameForm = ({label}: Props) => {
 
     return (
         <form onSubmit={onSubmit}>
-            <label>{label}</label>
+            <label className="name-form-label">{label}</label>
             <input 
             type="text"
             onChange={handleNameChange}
