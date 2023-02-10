@@ -29,7 +29,7 @@ public class GameController {
     private final GameRepository gameRepository;
     public GameController(GameRepository gameRepository) {this.gameRepository = gameRepository;}
     @GetMapping
-    public ResponseEntity<List<Game>> getAllGamesByUsername(@PathVariable(value = "username") Integer username) {
+    public ResponseEntity<List<Game>> getAllGamesByUsername(@PathVariable("username") Integer username) {
         if (!userRepository.existsById(username)) {
             throw new EntityNotFoundException();
         }
@@ -39,13 +39,20 @@ public class GameController {
     }
 
     @GetMapping("{gameId}")
-    public ResponseEntity<Game> getGameById(@PathVariable("gameId") Integer gameId) {
+    public ResponseEntity<Game> getOneGameById(@PathVariable("gameId") Integer gameId) {
         Game game = gameRepository.findById(gameId)
                 .orElseThrow(EntityNotFoundException::new);
         return ResponseEntity.ok(game);
     }
 
-    record NewGameRequest(Integer album1, Integer album2, Integer winner) {}
+    @GetMapping("round/{roundNumber}")
+    public ResponseEntity<List<Game>> getAllGamesForRound(@PathVariable("username") Integer username, @PathVariable("roundNumber") Integer roundNumber) {
+        User user = userRepository.findById(username).orElseThrow(EntityNotFoundException::new);
+        List<Game> games = gameRepository.findByUserIdAndRound(user, roundNumber);
+        return new ResponseEntity<>(games, HttpStatus.OK);
+    }
+
+    record NewGameRequest(Integer album1, Integer album2, Integer winner, Integer round) {}
 
     @PostMapping
     public ResponseEntity<Game> addGame(@PathVariable("username") Integer username,
@@ -55,6 +62,7 @@ public class GameController {
         game.setAlbum1(request.album1());
         game.setAlbum2(request.album2());
         game.setWinner(request.winner());
+        game.setRound(request.round());
         game.setUser(user);
         gameRepository.save(game);
 
@@ -89,7 +97,7 @@ public class GameController {
     @Autowired
     private GameService gameService;
 
-    @PostMapping("/round/{roundNumber}")
+    @PostMapping("round/{roundNumber}")
     public void saveGameRoundPairs(@PathVariable("roundNumber") Integer roundNumber, @PathVariable("username") Integer username) {
         // Create a new user
         User user = userRepository.findById(username).orElseThrow(EntityNotFoundException::new);
