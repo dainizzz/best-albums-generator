@@ -45,6 +45,16 @@ public class AlbumController {
         return ResponseEntity.ok(album);
     }
 
+    @GetMapping("ranked")
+    public ResponseEntity<List<Album>> getAllAlbumsByUsernameRanked(@PathVariable(value = "username") Integer username) {
+        if (!userRepository.existsById(username)) {
+            throw new EntityNotFoundException();
+        }
+
+        List<Album> albums = albumRepository.findByUserIdOrderByUserRankDesc(username);
+        return new ResponseEntity<>(albums, HttpStatus.OK);
+    }
+
     record NewAlbumRequest(String mbid, Integer playCount, String imgLink, String artist, String releaseDate, Integer userRank){}
 
     @PostMapping
