@@ -13,5 +13,5 @@ public interface AlbumRepository extends JpaRepository<Album, Integer> {
     @Transactional
     void deleteByUserId(Integer userId);
 
-    List<Album> findByUserIdOrderByUserRankDesc(Integer userId);
+    List<Album> findTop10ByUserIdOrderByUserRankDesc(Integer userId);
 }

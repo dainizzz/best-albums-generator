@@ -51,7 +51,7 @@ public class AlbumController {
             throw new EntityNotFoundException();
         }
 
-        List<Album> albums = albumRepository.findByUserIdOrderByUserRankDesc(username);
+        List<Album> albums = albumRepository.findTop10ByUserIdOrderByUserRankDesc(username);
         return new ResponseEntity<>(albums, HttpStatus.OK);
     }
 
