@@ -114,7 +114,9 @@ const App = () => {
           setCurrentMatches={setCurrentMatches}
         />
       ) : null}
-      {currentRound === 5 ? <Results /> : null}
+      {currentRound === 5 ? (
+        <Results userId={currentUser.id} username={currentUser.name} />
+      ) : null}
     </>
   );
 };
