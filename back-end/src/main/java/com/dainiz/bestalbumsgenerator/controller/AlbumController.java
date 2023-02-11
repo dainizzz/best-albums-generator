@@ -127,9 +127,10 @@ public class AlbumController {
 
     // In future updates, this will be updated to be a variable, so you can modify data from different years
     @PostMapping("2022")
-    public void saveFilteredAlbums(@PathVariable("username") Integer username) {
+    public ResponseEntity<List<Album>> saveFilteredAlbums(@PathVariable("username") Integer username) {
         User user = userRepository.findById(username).orElseThrow(EntityNotFoundException::new);
         ArrayList<Album> filteredAlbums = lastFmService.processUserAlbums(user);
         albumRepository.saveAll(filteredAlbums);
+        return new ResponseEntity<>(filteredAlbums, HttpStatus.CREATED);
     }
 }

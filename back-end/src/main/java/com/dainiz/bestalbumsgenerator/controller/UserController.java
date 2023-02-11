@@ -27,10 +27,11 @@ public class UserController {
     record NewUserRequest(String name){}
 
     @PostMapping
-    public void addUser(@RequestBody NewUserRequest request) {
+    public ResponseEntity<User> addUser(@RequestBody NewUserRequest request) {
         User user = new User();
         user.setName(request.name());
         userRepository.save(user);
+        return new ResponseEntity<>(user, HttpStatus.CREATED);
     }
 
     @DeleteMapping("{userId}")

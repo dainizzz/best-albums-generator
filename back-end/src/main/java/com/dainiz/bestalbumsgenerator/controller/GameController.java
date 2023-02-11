@@ -99,7 +99,7 @@ public class GameController {
     private GameService gameService;
 
     @PostMapping("round/{roundNumber}")
-    public void saveGameRoundPairs(@PathVariable("roundNumber") Integer roundNumber, @PathVariable("username") Integer username) {
+    public ResponseEntity<List<Game>> saveGameRoundPairs(@PathVariable("roundNumber") Integer roundNumber, @PathVariable("username") Integer username) {
         // Create a new user
         User user = userRepository.findById(username).orElseThrow(EntityNotFoundException::new);
         // Make call to album repository and get all albums by the id
@@ -108,6 +108,7 @@ public class GameController {
         ArrayList<Game> gameRoundPairs = gameService.generateRoundPairings(albums, user, roundNumber);
         // Save to Game table
         gameRepository.saveAll(gameRoundPairs);
+        return new ResponseEntity<>(gameRoundPairs, HttpStatus.CREATED);
     }
 
 }
