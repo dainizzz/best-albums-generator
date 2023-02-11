@@ -1,16 +1,14 @@
 import Album from "./Album";
-import axios from "axios";
-import { useState, useEffect } from "react";
 import "../styling/AlbumContainer.css";
 
-const AlbumContainer = ({ albumId, userId, currentRound, selectAlbum }) => {
+const AlbumContainer = ({ albumId, userId, selectAlbum, currentMatch }) => {
   return (
     <div className="album-container">
       <Album
         albumId={albumId}
         userId={userId}
-        currentRound={currentRound}
         selectAlbum={selectAlbum}
+        currentMatch={currentMatch}
       />
     </div>
   );

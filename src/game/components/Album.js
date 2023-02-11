@@ -1,17 +1,30 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-const Album = ({ albumId, userId, currentRound, selectAlbum }) => {
-  // get request using album id to get album data
+const Album = ({ albumId, userId, selectAlbum, currentMatch }) => {
+  const [albumData, setAlbumData] = useState({});
+
+  // useEffect triggers get request using album id to get album data; this is happening too soon :(
+  useEffect(() => {
+    axios
+      .get(
+        `${process.env.REACT_APP_BACKEND_URL}/users/${userId}/albums/${albumId}`
+      )
+      .then((response) => {
+        console.log("I am inside get album data request ;o");
+        setAlbumData(response.data);
+      })
+      .catch((error) => {
+        console.log("Error:", error);
+      });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentMatch]);
 
   return (
     <>
-      <img
-        src="https://lastfm.freetls.fastly.net/i/u/300x300/022d1a3924a84c731520bda4e2f6e3d8.png"
-        alt="placeholder for album"
-      />
-      <h2>Album Title Prop</h2>
-      <h3>Artist Name Prop</h3>
+      <img src={albumData.imgLink} alt="album cover" />
+      <h2>{albumData.title}</h2>
+      <h3>{albumData.artist}</h3>
       <button onClick={() => selectAlbum(albumId)}>Select</button>
     </>
   );
