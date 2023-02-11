@@ -1,8 +1,10 @@
+import Lottie from "react-lottie";
 import axios from "axios";
-import React from "react";
 import { useState, useEffect } from "react";
 import Login from "./login/Login";
 import Game from "./game/Game";
+import Results from "./results/Results";
+import animationData from "./lotties/circle-shape-morphing-animation.json";
 
 const App = () => {
   const [usersList, setUsersList] = useState([]);
@@ -82,10 +84,26 @@ const App = () => {
       });
   };
 
+  // Animation Config
+  const defaultOptions = {
+    loop: true,
+    autoplay: true,
+    animationData: animationData,
+    rendererSettings: {
+      preserveAspectRatio: "xMidYMid slice",
+    },
+  };
+
   return (
     <>
-      {albumsList.length > 0 ? null : <Login addUserData={addUserData} />}
-      {albumsList.length > 0 && currentRound !== 5 ? (
+      {Object.keys(currentUser).length === 0 ? (
+        <Login addUserData={addUserData} />
+      ) : null}
+      {/* Loading screen logic will go here, using the ternary statement currently above */}
+      {albumsList.length === 0 && Object.keys(currentUser).length !== 0 ? (
+        <Lottie options={defaultOptions} height={400} width={400} />
+      ) : null}
+      {currentMatches.length > 0 && currentRound !== 5 ? (
         <Game
           albumsList={albumsList}
           setAlbumsList={setAlbumsList}
@@ -93,8 +111,10 @@ const App = () => {
           currentRound={currentRound}
           currentMatches={currentMatches}
           setCurrentRound={setCurrentRound}
+          setCurrentMatches={setCurrentMatches}
         />
       ) : null}
+      {currentRound === 5 ? <Results /> : null}
     </>
   );
 };
