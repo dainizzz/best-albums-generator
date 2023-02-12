@@ -9,11 +9,11 @@ export const useAlbumData = () => {
 
   console.log({ isLoading });
   const postAlbums = async (userId) => {
-    setLoading(true);
     await axios
       .post(`${process.env.REACT_APP_BACKEND_URL}/users/${userId}/albums/2022`)
       .then(({ data }) => {
-        console.log({ data });
+        console.log("POST ALBUMS REQUEST");
+        console.log({ data, userId });
         setAlbumsList(data);
         postMatches(userId);
       })
@@ -25,21 +25,24 @@ export const useAlbumData = () => {
   };
 
   const postMatches = async (userId) => {
-    await axios
-      .post(
-        `${process.env.REACT_APP_BACKEND_URL}/users/${userId}/games/round/1`
-      )
-      .then(({ data }) => {
-        console.log({ data });
-        setCurrentMatches(data);
-        console.log("Hooray!");
-        setLoading(false);
-      })
-      .catch((error) => {
-        setError(true);
-        setLoading(false);
-        console.log(("Error: ", error));
-      });
+    if (userId) {
+      await axios
+        .post(
+          `${process.env.REACT_APP_BACKEND_URL}/users/${userId}/games/round/1`
+        )
+        .then(({ data }) => {
+          console.log("POST MATCHES REQUEST");
+          console.log({ data });
+          setCurrentMatches(data);
+          console.log("Hooray!");
+          setLoading(false);
+        })
+        .catch((error) => {
+          setError(true);
+          setLoading(false);
+          console.log(("Error: ", error));
+        });
+    }
   };
 
   return {

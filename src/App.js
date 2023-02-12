@@ -20,10 +20,12 @@ const App = () => {
   } = useAlbumData();
 
   useEffect(() => {
-    console.log("The user has been updated:");
-    console.log({ currentUser });
-    postAlbums(currentUser.id);
-  }, [currentUser, postAlbums]);
+    if (currentUser.id) {
+      postAlbums(currentUser.id);
+      console.log("The user has been updated:", currentUser);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentUser]);
 
   // Animation Config
   const defaultOptions = {
