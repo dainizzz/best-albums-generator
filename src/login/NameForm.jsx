@@ -1,11 +1,6 @@
-import React from "react";
 import { useState } from "react";
 
-import "../styling/NameForm.css";
-
-// type Props = {
-//     label: string
-// }
+import "./styling/nameForm.css";
 
 const NameForm = ({ label, addUserData }) => {
   const [formName, setFormName] = useState("");

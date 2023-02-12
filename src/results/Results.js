@@ -1,4 +1,4 @@
-import NameForm from "../ui/components/NameForm";
+import NameForm from "../login/NameForm";
 import Graphic from "./components/Graphic";
 import GraphicStyleDropdown from "./components/GraphicStyleDropdown";
 import TextBox from "./components/TextBox";

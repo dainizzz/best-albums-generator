@@ -1,13 +1,13 @@
 import React from "react";
-import NameForm from "../ui/components/NameForm";
+import NameForm from "./NameForm";
 import "./styling/login.css";
 
-const displayContent = {
+export const displayContent = {
   title: "2022 Best Albums Generator",
   label: "Enter your Last.fm username to continue",
 };
 
-const Login = ({ addUserData }) => {
+export const Login = ({ addUserData }) => {
   return (
     <div className="container">
       <h1>{displayContent.title}</h1>
