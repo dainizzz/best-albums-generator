@@ -1,5 +1,5 @@
 import canvasTxt from 'canvas-txt';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 
 
 const GRAPHICS = {
@@ -29,9 +29,12 @@ const Graphic = ({displayName, finalAlbumsCleaned, graphicStyle}) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     },[displayName]);
     
-    
-    // TODO: Move myCanvas into useEffect
 
+    useEffect(() => {
+        myCanvas();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [displayName, resultsText, graphicStyle]);
+    
     const image = new Image();
     console.log(GRAPHICS[graphicStyle]);
     image.src = GRAPHICS[graphicStyle];
@@ -63,7 +66,7 @@ const Graphic = ({displayName, finalAlbumsCleaned, graphicStyle}) => {
     return (
     <div className="graphic-container">
         <canvas id="myCanvas" width="750" height="700"></canvas>
-        <button onClick={myCanvas}>Try it!</button>
+        {/* <button onClick={myCanvas}>Try it!</button> */}
         <button onClick={downloadImage}>Download!</button>
     </div>
 )};

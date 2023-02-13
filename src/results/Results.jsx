@@ -20,7 +20,7 @@ const Results = () => {
   // TODO: Set state back to empty array
   // const [finalAlbums, setFinalAlbums] = useState([]);
   const [testingAlbums, setTestingAlbums] = useState(finalAlbumsCleaned);
-  // TODO: Switch state back to username
+  // TODO: take out username here
   const username = "inolvidable-"
   const [displayName, setDisplayName] = useState(username);
   const [graphicStyle, setGraphicStyle] = useState("cyber");

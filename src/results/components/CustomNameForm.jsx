@@ -5,12 +5,12 @@ const CustomNameForm = ({setDisplayName, username, hideName, setHideName}) => {
   const [customNameBool, setCustomNameBool] = useState(false)
 
   const handleCustomNameBool = () => {
-    setCustomNameBool(!customNameBool);
+    setCustomNameBool(customNameBool => !customNameBool);
   }
 
-  const handleHideName = () => {
+  const handleHideName = () => {;
     setHideName(!hideName);
-  }
+  } 
 
   const handleNameChange = (event) => {
     console.log(event.target.value);
@@ -22,13 +22,14 @@ const CustomNameForm = ({setDisplayName, username, hideName, setHideName}) => {
       setDisplayName(username);
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  },[customNameBool])
+  },[customNameBool, hideName])
 
   useEffect(() => {
     if (hideName){
       setDisplayName("");
     }
-  })
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[hideName, customNameBool, ])
 
   return (
   <form>
