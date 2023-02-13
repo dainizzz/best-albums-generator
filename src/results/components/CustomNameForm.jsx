@@ -1,10 +1,7 @@
 import {useState, useEffect} from 'react';
 import '../styling/customNameForm.css';
 
-const displayContent = {};
-
-const CustomNameForm = ({setDisplayName, username}) => {
-  const [hideName, setHideName] = useState(false)
+const CustomNameForm = ({setDisplayName, username, hideName, setHideName}) => {
   const [customNameBool, setCustomNameBool] = useState(false)
 
   const handleCustomNameBool = () => {
@@ -27,9 +24,13 @@ const CustomNameForm = ({setDisplayName, username}) => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   },[customNameBool])
 
+  useEffect(() => {
+    if (hideName){
+      setDisplayName("");
+    }
+  })
+
   return (
-  // pass down show name function (state) and update when this is checked
-  // pass down custom name state thingy
   <form>
     <label htmlFor="show-name" className="custom-name-container">Hide Username
     <input type="checkbox" id="show-name" name="show-name" checked={hideName} onChange={handleHideName} />

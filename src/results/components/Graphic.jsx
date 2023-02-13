@@ -1,4 +1,6 @@
 import canvasTxt from 'canvas-txt';
+import { useEffect, useState } from 'react';
+
 
 const GRAPHICS = {
     cyber: "/images/cyber.png",
@@ -8,8 +10,25 @@ const GRAPHICS = {
 
 
 const Graphic = ({displayName, finalAlbumsCleaned, graphicStyle}) => {
+    const [resultsText, setResultsText] = useState("");
     const finalAlbumsString = finalAlbumsCleaned.join("\n");
-    const resultsText = `${displayName}'s\n2022 Top Albums\n\n${finalAlbumsString}`
+
+    const generateResultsText = (displayName) => {
+        let resultsText = ""
+        if (!displayName) {
+            resultsText = `2022 Top Albums\n\n${finalAlbumsString}`
+        } else {
+            resultsText = `${displayName}'s\n2022 Top Albums\n\n${finalAlbumsString}`
+        }
+        return resultsText
+    };
+
+    useEffect(() =>{
+        const newResultsText = generateResultsText(displayName);
+        setResultsText(newResultsText);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    },[displayName]);
+    
     
     // TODO: Move myCanvas into useEffect
 

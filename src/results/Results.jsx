@@ -24,7 +24,7 @@ const Results = () => {
   const username = "inolvidable-"
   const [displayName, setDisplayName] = useState(username);
   const [graphicStyle, setGraphicStyle] = useState("cyber");
-  const [showName, setShowName] = useState(true);
+  const [hideName, setHideName] = useState(false);
 
   return (
     <div className="results-container">
@@ -32,8 +32,8 @@ const Results = () => {
       <TextBox finalAlbumsCleaned={testingAlbums} />
       <DownloadButton/>
       <div className="image-modifiers">
-        <GraphicStyleDropdown setGraphicStyle={setGraphicStyle}/>
-        <CustomNameForm setDisplayName={setDisplayName} username={username} />
+        <GraphicStyleDropdown setGraphicStyle={setGraphicStyle} />
+        <CustomNameForm setDisplayName={setDisplayName} username={username} setHideName={setHideName} hideName={hideName} />
       </div>
     </div>
   );
