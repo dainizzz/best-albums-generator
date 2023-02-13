@@ -1,13 +1,11 @@
 import canvasTxt from 'canvas-txt';
 import { useEffect, useState, useRef } from 'react';
 
-
 const GRAPHICS = {
     cyber: "/images/cyber.png",
     paper: "/images/paper.png",
     botanical: "/images/botanical.png"
 }
-
 
 const Graphic = ({displayName, finalAlbumsCleaned, graphicStyle}) => {
     const myCanvas = useRef();
@@ -45,20 +43,9 @@ const Graphic = ({displayName, finalAlbumsCleaned, graphicStyle}) => {
         };
     }, [graphicStyle, displayName, resultsText] );
 
-    const downloadImage = () => {
-        var canvas = document.getElementById("myCanvas");
-        var image = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
-        var link = document.createElement('a');
-        link.download = "2022-best-albums.png";
-        link.href = image;
-        link.click();
-    }
-// TODO: Move these buttons to side bar T___T
     return (
     <div className="graphic-container">
-        <canvas ref={myCanvas} id="myCanvas" width="750" height="700"></canvas>
-        {/* <button onClick={myCanvas}>Try it!</button> */}
-        <button onClick={downloadImage}>Download!</button>
+        <canvas ref={myCanvas} id="myCanvas" width="750" height="750"></canvas>
     </div>
 )};
 

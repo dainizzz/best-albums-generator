@@ -2,7 +2,6 @@ import CustomNameForm from "./components/CustomNameForm";
 import Graphic from "./components/Graphic";
 import GraphicStyleDropdown from "./components/GraphicStyleDropdown";
 import TextBox from "./components/TextBox";
-import DownloadButton from './components/DownloadButton';
 import "./styling/results.css";
 import axios from "axios";
 import { useState, useEffect } from "react";
@@ -30,7 +29,6 @@ const Results = () => {
     <div className="results-container">
       <Graphic displayName={displayName} finalAlbumsCleaned={finalAlbumsCleaned} graphicStyle={graphicStyle}/>
       <TextBox finalAlbumsCleaned={testingAlbums} />
-      <DownloadButton/>
       <div className="image-modifiers">
         <GraphicStyleDropdown setGraphicStyle={setGraphicStyle} />
         <CustomNameForm setDisplayName={setDisplayName} username={username} setHideName={setHideName} hideName={hideName} />

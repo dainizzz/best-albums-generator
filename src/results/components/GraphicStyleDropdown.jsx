@@ -1,9 +1,9 @@
-import { useState } from "react";
 
 import "../styling/graphicStyleDropdown.css";
 
 const GraphicStyleDropdown = ({setGraphicStyle}) => {
   const handleStyleChange = (event) => {
+    console.log(event);
     setGraphicStyle(event);
   };
 
