@@ -1,11 +1,9 @@
 const TextBox = ({ finalAlbumsCleaned }) => {
-  const finalAlbumsString = finalAlbumsCleaned.join(" / ");
-
+  const finalAlbumsString = finalAlbumsCleaned.join("\n");
   // TODO: Implement copy logic
   return (
     <div className="results-text">
-      <textarea id="results" name="results" readOnly>
-        {finalAlbumsString}
+      <textarea id="results" name="results" value={finalAlbumsString} readOnly cols="50" rows="10">
       </textarea>
       <button>Copy</button>
     </div>

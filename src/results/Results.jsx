@@ -6,45 +6,34 @@ import DownloadButton from './components/DownloadButton';
 import "./styling/results.css";
 import axios from "axios";
 import { useState, useEffect } from "react";
+import data from "../sampleAlbums.json";
 
-const Results = ({ userId, username }) => {
-  const [finalAlbums, setFinalAlbums] = useState([]);
+// ------------------------------------------------------------------
+const finalAlbumsCleaned = data.map(
+  (album, index) => `${index + 1}. ${album.title} - ${album.artist}`
+);
+console.log(finalAlbumsCleaned);
+
+// TODO: set back to this (original) after testing:
+// const Results = ({ userId, username }) => {
+const Results = () => {
+  // TODO: Set state back to empty array
+  // const [finalAlbums, setFinalAlbums] = useState([]);
+  const [testingAlbums, setTestingAlbums] = useState(finalAlbumsCleaned);
+  // TODO: Switch state back to username
+  const username = "inolvidable-"
   const [displayName, setDisplayName] = useState(username);
+  const [graphicStyle, setGraphicStyle] = useState("cyber");
   const [showName, setShowName] = useState(true);
-
-  // Move to custom hook and pass in a parameter isTriggered
-  const effectHelper = () => {
-    // nest inside if is triggered
-    axios
-      .get(`${process.env.REACT_APP_BACKEND_URL}/users/${userId}/albums/ranked`)
-      .then((response) => {
-        console.log("I am in the final album data request!");
-        setFinalAlbums(response.data);
-      })
-      .catch((error) => {
-        console.log("Error:", error);
-      });
-  };
-
-  useEffect(() => {
-    effectHelper();
-    // Add isTriggered to this
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-  // Map through data in the hook to get only artist & title
-
-  const finalAlbumsCleaned = finalAlbums.map(
-    (album) => `${album.title} - ${album.artist}`
-  );
 
   return (
     <div className="results-container">
-      <Graphic displayName={displayName} finalAlbums={finalAlbumsCleaned} />
-      <TextBox finalAlbums={finalAlbumsCleaned} />
+      <Graphic displayName={displayName} finalAlbumsCleaned={finalAlbumsCleaned} graphicStyle={graphicStyle}/>
+      <TextBox finalAlbumsCleaned={testingAlbums} />
       <DownloadButton/>
       <div className="image-modifiers">
-        <GraphicStyleDropdown />
-        <CustomNameForm setDisplayName={setDisplayName} />
+        <GraphicStyleDropdown setGraphicStyle={setGraphicStyle}/>
+        <CustomNameForm setDisplayName={setDisplayName} username={username} />
       </div>
     </div>
   );

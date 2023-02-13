@@ -1,15 +1,10 @@
 import { useState } from "react";
 
-import "../styling/GraphicStyleDropdown.css";
+import "../styling/graphicStyleDropdown.css";
 
-const GraphicStyleDropdown = () => {
-  const [style, setStyle] = useState({
-    style: "default",
-  });
+const GraphicStyleDropdown = ({setGraphicStyle}) => {
   const handleStyleChange = (event) => {
-    setStyle({
-      style: event.target.value,
-    });
+    setGraphicStyle(event);
   };
 
   return (
@@ -21,9 +16,9 @@ const GraphicStyleDropdown = () => {
         name="select-style"
         onChange={(e) => handleStyleChange(e.target.value)}
       >
-        <option value="scrapbook">Scrapbook</option>
+        <option value="cyber">Cyber</option>
         <option value="botanical">Botanical</option>
-        <option value="sky">Sky</option>
+        <option value="paper">Paper</option>
       </select>
     </div>
   );

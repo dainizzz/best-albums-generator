@@ -1,5 +1,7 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
+import { getApiUrl } from "../../utils";
+import { USER_GAME_ROUND_URL, DEFAULT_PARAMS } from "../../api";
 
 export const useCurrentMatchQuery = (
   currentUserId,
@@ -26,11 +28,15 @@ export const useCurrentMatchQuery = (
   }, [currentMatchNum]);
 
   // Make a new match request when current round changes
+  const userGameRoundParams = {
+    ...DEFAULT_PARAMS,
+    ":currentRound": currentRound,
+    ":currentUserId": currentUserId,
+  };
+  const userGameRoundApi = getApiUrl(USER_GAME_ROUND_URL, userGameRoundParams);
   useEffect(() => {
     axios
-      .post(
-        `${process.env.REACT_APP_BACKEND_URL}/users/${currentUserId}/games/round/${currentRound}`
-      )
+      .post(userGameRoundApi)
       .then(({ data }) => {
         console.log({ data });
         setCurrentMatches(data);
