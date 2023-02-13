@@ -20,13 +20,19 @@ const Game = ({
   setCurrentMatches,
 }) => {
   const {id} = currentUser;
-  const {currentMatch, selectAlbum} = useCurrentMatchQuery(id, currentRound, currentMatches, setCurrentRound, setCurrentMatches, albumsList, setAlbumsList );
+  const {currentMatch, selectAlbum} = useCurrentMatchQuery(
+    id,
+    currentRound,
+    currentMatches,
+    setCurrentRound,
+    setCurrentMatches,
+    albumsList,
+    setAlbumsList);
 
   const albumData = constructAlbumProps(currentMatch, id, selectAlbum)
 
   return (
     <>
-      {/* Instructions will be a hide/show element that pop up after you click an icon */}
       <h3 className="instructions">
         Click on the button below the album you prefer.
       </h3>
@@ -34,18 +40,6 @@ const Game = ({
         {
           albumData.map((props) => <Album {...props}/> )
         }
-        {/* <Album 
-          albumId={currentMatch.album1}
-          userId={currentUser.id}
-          selectAlbum={selectAlbum}
-          currentMatch={currentMatch}
-        />
-        <Album
-          albumId={currentMatch.album2}
-          userId={currentUser.id}
-          selectAlbum={selectAlbum}
-          currentMatch={currentMatch}
-        /> */}
       </div>
     </>
   );

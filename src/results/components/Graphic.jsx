@@ -7,10 +7,10 @@ const GRAPHICS = {
     botanical: "/images/botanical.png"
 }
 
-const Graphic = ({displayName, finalAlbumsCleaned, graphicStyle}) => {
+const Graphic = ({displayName, finalAlbums, graphicStyle}) => {
     const myCanvas = useRef();
     const [resultsText, setResultsText] = useState("");
-    const finalAlbumsString = finalAlbumsCleaned.join("\n");
+    const finalAlbumsString = finalAlbums.join("\n");
 
     const generateResultsText = (displayName) => {
         let resultsText = ""

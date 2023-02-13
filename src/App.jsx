@@ -42,11 +42,10 @@ const App = () => {
       {Object.keys(currentUser).length === 0 ? (
         <Login addUserData={addUserData} />
       ) : null}
-      {/* Loading screen logic will go here, using the ternary statement currently above */}
       {albumsList.length === 0 && Object.keys(currentUser).length !== 0 ? (
         <Lottie options={defaultOptions} height={400} width={400} />
       ) : null}
-      {currentMatches.length > 0 && currentRound !== 5 ? (
+      {currentMatches.length > 0 && currentRound !== 6 ? (
         <Game
           albumsList={albumsList}
           setAlbumsList={setAlbumsList}
@@ -57,7 +56,7 @@ const App = () => {
           setCurrentMatches={setCurrentMatches}
         />
       ) : null}
-      {currentRound === 5 ? (
+      {currentRound === 6 ? (
         <Results userId={currentUser.id} username={currentUser.name} />
       ) : null}
     </>

@@ -1,7 +1,7 @@
 import DownloadButton from "./DownloadButton";
 
-const TextBox = ({ finalAlbumsCleaned }) => {
-  const finalAlbumsString = finalAlbumsCleaned.join("\n");
+const TextBox = ({ finalAlbums }) => {
+  const finalAlbumsString = finalAlbums.join("\n");
   // TODO: Implement copy logic
   return (
     <div className="results-text">
