@@ -32,15 +32,17 @@ const CustomNameForm = ({setDisplayName, username, hideName, setHideName}) => {
   },[hideName, customNameBool, ])
 
   return (
-  <form>
-    <label htmlFor="show-name" className="custom-name-container">Hide Username
-    <input type="checkbox" id="show-name" name="show-name" checked={hideName} onChange={handleHideName} />
-    <span className="checkmark"></span>
-    </label>
-    <input type="checkbox" id="custom-name-bool" name="custom-name-bool" checked={customNameBool} onChange={handleCustomNameBool} />
-    <label htmlFor="custom-name-bool" className="custom-name-container">Use Custom Name
+  <form className='form-container'>
+    <div>
+      <input type="checkbox" id="show-name" name="show-name" checked={hideName} onChange={handleHideName} />
+      <label htmlFor="show-name">Hide Username</label>
+    </div>
+    <div>
+          <input type="checkbox" id="custom-name-bool" name="custom-name-bool" checked={customNameBool} onChange={handleCustomNameBool} />
+    <label htmlFor="custom-name-bool">Use Custom Name
     </label>
     {customNameBool? (<input type="text" id="custom-name-text" name="custom-name-text" className="custom-name-text" onChange={handleNameChange}/> ) : null}
+    </div>
   </form>
 )};
 export default CustomNameForm;

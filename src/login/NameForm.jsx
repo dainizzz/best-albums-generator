@@ -24,7 +24,7 @@ const NameForm = ({ label, addUserData }) => {
   return (
     <form onSubmit={onSubmit}>
       <label className="name-form-label">{label}</label>
-      <input type="text" onChange={handleNameChange}></input>
+      <input className="name-form-text" type="text" onChange={handleNameChange}></input>
       <input type="submit" value="Submit" />
     </form>
   );

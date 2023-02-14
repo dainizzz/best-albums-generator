@@ -1,10 +1,9 @@
 import Lottie from "react-lottie";
-import axios from "axios";
 import { useState, useEffect } from "react";
 import Login from "./login/Login";
 import Game from "./game/Game";
 import Results from "./results/Results";
-import animationData from "./lotties/circle-shape-morphing-animation.json";
+import animationData from "./lotties/girl-listening-to-music.json";
 import { useUserData } from "./hooks/useUserData";
 import { useAlbumData } from "./hooks/useAlbumData";
 
@@ -43,7 +42,7 @@ const App = () => {
         <Login addUserData={addUserData} />
       ) : null}
       {albumsList.length === 0 && Object.keys(currentUser).length !== 0 ? (
-        <Lottie options={defaultOptions} height={400} width={400} />
+        <div className="game-load"><Lottie options={defaultOptions} height={500} width={500} /></div>
       ) : null}
       {currentMatches.length > 0 && currentRound !== 6 ? (
         <Game

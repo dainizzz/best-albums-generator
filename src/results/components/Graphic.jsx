@@ -8,9 +8,9 @@ const GRAPHICS = {
 }
 
 const Graphic = ({displayName, finalAlbums, graphicStyle}) => {
+    const finalAlbumsString = finalAlbums.join("\n");
     const myCanvas = useRef();
     const [resultsText, setResultsText] = useState("");
-    const finalAlbumsString = finalAlbums.join("\n");
 
     const generateResultsText = (displayName) => {
         let resultsText = ""
@@ -26,7 +26,7 @@ const Graphic = ({displayName, finalAlbums, graphicStyle}) => {
         const newResultsText = generateResultsText(displayName);
         setResultsText(newResultsText);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    },[displayName]);
+    },[displayName, finalAlbumsString]);
     
     useEffect(() => {
         const context = myCanvas.current.getContext("2d");
@@ -39,9 +39,9 @@ const Graphic = ({displayName, finalAlbums, graphicStyle}) => {
         image.onload = () => {
             context.drawImage(image, 0, 0);
             // drawText(ctx, text, x, y, width, height)
-            canvasTxt.drawText(context, resultsText, 50, -20, 700, 700)
+            canvasTxt.drawText(context, resultsText, 20, 0, 700, 710)
         };
-    }, [graphicStyle, displayName, resultsText] );
+    }, [graphicStyle, displayName, resultsText, finalAlbumsString] );
 
     return (
     <div className="graphic-container">

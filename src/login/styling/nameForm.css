@@ -7,7 +7,6 @@
 input[type=text] {
     display: block;
     text-align: center;
-    width: 100%;
     padding: 6px;
     margin: 10px 0px;
     font-size: 2rem;
@@ -16,6 +15,10 @@ input[type=text] {
     box-shadow:
     3px 3px 6px 0px inset rgb(204, 219, 232),
     -3px -3px 6px 1px inset rgba(255, 255, 255, 0.5);
+}
+
+.name-form-text {
+    width: 100%;
 }
 
 input[type=text]:focus {

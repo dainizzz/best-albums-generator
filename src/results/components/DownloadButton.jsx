@@ -7,6 +7,6 @@ const DownloadButton = () => {
         link.href = image;
         link.click();
     }
-    return (<button onClick={downloadImage}>Download Graphic</button>)
+    return (<button className="download-button" onClick={downloadImage}>Download Graphic</button>)
 };
 export default DownloadButton;
