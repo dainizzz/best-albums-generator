@@ -9,7 +9,7 @@ import { useState, useEffect } from "react";
 const Results = ({ userId, username }) => {
   const [finalAlbums, setFinalAlbums] = useState([]);
   const [displayName, setDisplayName] = useState(username);
-  const [graphicStyle, setGraphicStyle] = useState("cyber");
+  const [graphicStyle, setGraphicStyle] = useState("blobs");
   const [hideName, setHideName] = useState(false);
 
   const effectHelper = () => {
@@ -36,7 +36,7 @@ useEffect(() => {
 
   return (
     <div className="results-container">
-      <Graphic displayName={displayName} finalAlbums={finalAlbums} graphicStyle={graphicStyle}/>
+      <Graphic displayName={displayName} finalAlbums={finalAlbums} graphicStyle={graphicStyle} hideName={hideName}/>
       <TextBox finalAlbums={finalAlbums} />
       <div className="image-modifiers">
         <GraphicStyleDropdown setGraphicStyle={setGraphicStyle} />

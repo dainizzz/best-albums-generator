@@ -42,7 +42,7 @@ const App = () => {
         <Login addUserData={addUserData} />
       ) : null}
       {albumsList.length === 0 && Object.keys(currentUser).length !== 0 ? (
-        <div className="game-load"><Lottie options={defaultOptions} height={500} width={500} /></div>
+        <div className="game-load"><Lottie options={defaultOptions} height={600} width={600} /></div>
       ) : null}
       {currentMatches.length > 0 && currentRound !== 6 ? (
         <Game

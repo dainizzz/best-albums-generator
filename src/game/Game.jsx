@@ -34,7 +34,7 @@ const Game = ({
   return (
     <>
       <h3 className="instructions">
-        Click on the button below the album you prefer.
+        Click on the button below the album you prefer
       </h3>
       <div className="game-container">
         {

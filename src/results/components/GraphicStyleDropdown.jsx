@@ -16,9 +16,9 @@ const GraphicStyleDropdown = ({setGraphicStyle}) => {
         name="select-style"
         onChange={(e) => handleStyleChange(e.target.value)}
       >
-        <option value="cyber">Cyber</option>
-        <option value="botanical">Botanical</option>
-        <option value="paper">Paper</option>
+        <option value="blobs">Blobs</option>
+        <option value="bubbles">Bubbles</option>
+        <option value="bookish">Bookish</option>
       </select>
     </div>
   );
