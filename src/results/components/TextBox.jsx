@@ -4,7 +4,6 @@ const TextBox = ({ finalAlbums }) => {
   const finalAlbumsString = finalAlbums.join("\n");
   const copyText = () => {
     navigator.clipboard.writeText(finalAlbumsString);
-    // document.execCommand('copy' true, text);
   };
   return (
     <div className="results-text">

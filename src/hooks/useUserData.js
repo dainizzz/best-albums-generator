@@ -11,7 +11,6 @@ export const useUserData = () => {
       .then(({ data }) => {
         setUsersList((prev) => [...prev, data]);
         setCurrentUser(data);
-        console.log("This is the current user:", { currentUser });
       })
       .catch((error) => {
         console.log(("Error: ", error));

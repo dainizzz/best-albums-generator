@@ -6,3 +6,5 @@ export const DEFAULT_PARAMS = {
 
 export const USER_GAME_ROUND_URL =
   ":process/users/:currentUserId/games/round/:currentRound";
+
+// Future updates will have all URLs here

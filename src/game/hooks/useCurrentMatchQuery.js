@@ -27,7 +27,7 @@ export const useCurrentMatchQuery = (
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentMatchNum]);
 
-  // Make a new match request when current round changes
+  // Makes a new match request when current round changes
   const userGameRoundParams = {
     ...DEFAULT_PARAMS,
     ":currentRound": currentRound,
@@ -59,7 +59,6 @@ export const useCurrentMatchQuery = (
       });
   };
 
-  // Chain w/ request to update match data
   const selectAlbum = async (albumId) => {
     await axios
       .patch(

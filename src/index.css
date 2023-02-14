@@ -43,7 +43,7 @@ h2 {
   font-style: italic;
 }
 
-::-moz-selection { /* Code for Firefox */
+::-moz-selection { 
   background: rgb(255, 221, 234);
 }
 
@@ -55,5 +55,8 @@ h2 {
   margin-top: 10%;
 }
 
-
-/* Start https://www.cursors-4u.com */ * {cursor: url(https://cur.cursors-4u.net/others/oth-2/oth162.cur), auto !important;} /* End https://www.cursors-4u.com */
+/* Start https://www.cursors-4u.com */ 
+* {
+  cursor: url(https://cur.cursors-4u.net/others/oth-2/oth162.cur),auto !important;
+}
+  /* End https://www.cursors-4u.com */

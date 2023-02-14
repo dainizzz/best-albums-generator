@@ -53,7 +53,6 @@ const Graphic = ({displayName, finalAlbums, graphicStyle, hideName}) => {
         image.src = GRAPHICS[graphicStyle];
         image.onload = () => {
             context.drawImage(image, 0, 0);
-            // drawText(ctx, text, x, y, width, height)
             if (graphicStyle === "blobs") {
                 canvasTxt.drawText(context, resultsText, 20, 10, 700, 710);
             } else if (graphicStyle === "bubbles") {

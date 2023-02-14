@@ -6,7 +6,6 @@ const NameForm = ({ label, addUserData }) => {
   const [formName, setFormName] = useState("");
 
   const handleNameChange = (event) => {
-    console.log(event.target.value);
     setFormName(event.target.value);
   };
 
@@ -16,7 +15,6 @@ const NameForm = ({ label, addUserData }) => {
     addUserData({
       name: formName,
     });
-    console.log({ formName });
 
     setFormName("");
   };

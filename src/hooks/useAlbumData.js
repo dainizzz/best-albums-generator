@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 export const useAlbumData = () => {
   const [albumsList, setAlbumsList] = useState([]);
@@ -7,13 +7,10 @@ export const useAlbumData = () => {
   const [isLoading, setLoading] = useState(false);
   const [isError, setError] = useState(false);
 
-  console.log({ isLoading });
   const postAlbums = async (userId) => {
     await axios
       .post(`${process.env.REACT_APP_BACKEND_URL}/users/${userId}/albums/2022`)
       .then(({ data }) => {
-        console.log("POST ALBUMS REQUEST");
-        console.log({ data, userId });
         setAlbumsList(data);
         postMatches(userId);
       })
@@ -31,10 +28,7 @@ export const useAlbumData = () => {
           `${process.env.REACT_APP_BACKEND_URL}/users/${userId}/games/round/1`
         )
         .then(({ data }) => {
-          console.log("POST MATCHES REQUEST");
-          console.log({ data });
           setCurrentMatches(data);
-          console.log("Hooray!");
           setLoading(false);
         })
         .catch((error) => {

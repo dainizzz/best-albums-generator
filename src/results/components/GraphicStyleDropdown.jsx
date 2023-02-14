@@ -1,4 +1,3 @@
-
 import "../styling/graphicStyleDropdown.css";
 
 const GraphicStyleDropdown = ({setGraphicStyle}) => {

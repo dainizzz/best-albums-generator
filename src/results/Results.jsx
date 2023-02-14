@@ -16,7 +16,6 @@ const Results = ({ userId, username }) => {
   axios
     .get(`${process.env.REACT_APP_BACKEND_URL}/users/${userId}/albums/ranked`)
     .then(({data}) => {
-      console.log("I am in the final album data request!");
       const finalAlbumsCleaned = data.map(
         (album, index) => `${index + 1}. ${album.title} - ${album.artist}`
       );
