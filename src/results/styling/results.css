@@ -91,3 +91,7 @@ canvas {
     box-shadow:
     3px 3px 7px 1px #797979;
 }
+
+.image-modifiers label {
+    font-size: .8em;
+}

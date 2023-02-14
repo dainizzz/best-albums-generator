@@ -5,6 +5,7 @@ import TextBox from "./components/TextBox";
 import "./styling/results.css";
 import axios from "axios";
 import { useState, useEffect } from "react";
+import DownloadButton from "./components/DownloadButton";
 
 const Results = ({ userId, username }) => {
   const [finalAlbums, setFinalAlbums] = useState([]);
@@ -40,6 +41,7 @@ useEffect(() => {
       <div className="image-modifiers">
         <GraphicStyleDropdown setGraphicStyle={setGraphicStyle} />
         <CustomNameForm setDisplayName={setDisplayName} username={username} setHideName={setHideName} hideName={hideName} />
+        <DownloadButton/>
       </div>
     </div>
   );
