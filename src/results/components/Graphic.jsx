@@ -33,7 +33,6 @@ const Graphic = ({displayName, finalAlbums, graphicStyle, hideName}) => {
         if (graphicStyle === "blobs" ){
             canvasTxt.font = "Space Mono";
             context.fillStyle = "#f9f3e5";
-            // context.fillStyle = "#9585f8";
             canvasTxt.fontSize = 26;
             canvasTxt.lineHeight = 44;
             canvasTxt.fontWeight = "bold";
