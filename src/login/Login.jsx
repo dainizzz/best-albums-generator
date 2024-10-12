@@ -10,7 +10,7 @@ export const displayContent = {
 export const Login = ({ addUserData }) => {
   return (
     <div className="container">
-      <h1>{displayContent.title}</h1>
+      <h1 className="homepage-title">{displayContent.title}</h1>
       <NameForm label={displayContent.label} addUserData={addUserData} />
     </div>
   );

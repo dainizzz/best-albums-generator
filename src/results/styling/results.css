@@ -8,7 +8,7 @@
 
 .graphic-container{
     grid-area: 1 / 1 / 7 / 2;
-    height: 100vh;
+    height: 90vh;
     margin-left: 20px;
     margin-top: 20px;
     align-self: center;
@@ -25,14 +25,16 @@
     align-items: center;
     margin-right: 20px;
     box-sizing: border-box;
-    border-radius: 20%;
-    background: radial-gradient(
+    border-radius: 40%;
+    height: 45vh;
+    /* background: radial-gradient(
     circle at 75% 30%,
     white 5px,
     aqua 8%,
     darkblue 60%,
     aqua 100%
-    );
+    ); */
+    background: transparent;
     box-shadow: inset 0 0 10px #fff, inset 10px 0 30px #eaf5fc,
     inset 20px 0px 30px #c2d8fe, inset -20px -20px 50px #fde9ea,
     inset 0 20px 40px #fde9ea, 0 0 40px #fff;
@@ -46,14 +48,16 @@
     align-content: center;
     align-items: center;
     margin-right: 20px;
-    border-radius: 20%;
-    background: radial-gradient(
+    border-radius: 40%;
+    height: 45vh;
+    /* background: radial-gradient(
     circle at 75% 30%,
     white 5px,
     aqua 8%,
     darkblue 60%,
     aqua 100%
-    );
+    ); */
+    background: transparent;
     box-shadow: inset 0 0 10px #fff, inset 10px 0 30px #eaf5fc,
     inset 20px 0px 30px #c2d8fe, inset -20px -20px 50px #fde9ea,
     inset 0 20px 40px #fde9ea, 0 0 40px #fff;
