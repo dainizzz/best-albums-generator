@@ -1,0 +1,22 @@
+.style-select {
+    font-family: 'Unbounded', sans-serif;
+}
+
+select {
+    color: black;
+    font-weight: 600;
+    font-size: 1.5rem;
+    background-color: white;
+    padding: .5em;
+    padding-right: 2.5em;
+    margin: 0;
+    text-indent: 0.01px;
+    text-overflow: '';
+    width: 80%;
+    border-radius: 6px;
+    box-sizing: border-box;
+    border: 0px;
+    box-shadow:
+    3px 3px 6px 0px inset rgb(204, 219, 232),
+    -3px -3px 6px 1px inset rgba(255, 255, 255, 0.5);
+}

@@ -1,0 +1,36 @@
+.game-container {
+    display: flex;
+    justify-content: space-evenly;
+    align-content: center;
+    align-items: center;
+}
+
+img {
+    width: auto;
+    height: auto;
+    max-width: 280px;
+    max-height: 280px;
+}
+
+.instructions {
+    text-align: center;
+    text-transform: uppercase;
+    font-style: italic;
+    width: 80vw;
+    border-radius: 30px;
+    margin-left: 10%;
+    background-color: rgb(240, 189, 208);
+    color: rgb(0, 0, 0);
+    box-shadow: 
+    3px 3px 16px 0px inset rgb(255, 247, 250),
+    -3px -3px 16px 1px inset rgb(232, 138, 172),
+    0px 54px 55px rgba(205, 249, 232, 1),
+    0px -12px 30px rgba(205, 249, 232, 1),
+    0px 4px 6px rgba(205, 249, 232, 1),
+    0px 12px 13px rgba(205, 249, 232, 1), 
+    0px -3px 5px rgba(205, 249, 232, 1);
+}
+
+.game-container h3 {
+    margin-top: -30px;
+}
